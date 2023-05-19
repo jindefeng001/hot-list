@@ -1,0 +1,23 @@
+server:
+  port: 8761
+  
+spring:
+  application:
+    name: commonUtils-service
+  redis:
+    host: localhost
+    port: 6379
+    password:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hot_list
+    data-username: root
+    data-password: 127168jdf
+    driver-class-name: com.mysql.jdbc.Driver
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

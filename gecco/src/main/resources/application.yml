@@ -1,0 +1,26 @@
+server:
+  port: 8001
+interfaceInfo:
+  hotUrl: http://localhost:8003/
+spring:
+  application:
+    name: gecco-service
+  cache:
+    type: CAFFEINE #REDIS or CAFFEINE
+    redis:
+      time-to-live: 1800000
+      cache-null-values: true
+  redis:
+      host: localhost
+      port: 6379
+      password:
+  datasource:
+    name: dataSource
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        master:
+          username: root #数据库用户名
+          password: 127168jdf #数据库密码
+          driver-class-name: com.mysql.cj.jdbc.Driver #驱动
+          url: jdbc:mysql://localhost:3306/hot_list?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&&allowMultiQueries=true

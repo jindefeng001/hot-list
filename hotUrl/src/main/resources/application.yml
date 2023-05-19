@@ -1,0 +1,44 @@
+server:
+  port: 8003
+interfaceInfo:
+  gecco: http://localhost:8001/
+spring:
+  application:
+    name: hotUrl
+  cache:
+    type: CAFFEINE #REDIS or CAFFEINE
+    redis:
+      time-to-live: 1800000
+      cache-null-values: true
+  redis:
+      host: localhost
+      port: 6379
+      password:
+  datasource:
+    name: dataSource
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      datasource:
+        master: 
+          username: root #数据库用户名
+          password: 127168jdf #数据库密码
+          driver-class-name: com.mysql.cj.jdbc.Driver #驱动
+          url: jdbc:mysql://localhost:3306/hot_list?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false&&allowMultiQueries=true
+#mybatis-plus配置
+mybatis-plus:
+  type-aliases-package: com.hot.**.model.entity
+  mapper-locations: classpath*:com/hot/**/mapper/*.xml
+  global-config:
+    banner: true  # 禁止打印banner
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis:
+#  monitor:
+#    enable: true # 开启sql打印，生产环境建议关闭
+#    timing: 1500 # 查询时长警报值（单位：毫秒），超过该值的sql将warn到日志
+#pagehelper分页插件配置
+pagehelper:
+  helper-dialect: mysql
